@@ -45,7 +45,7 @@ import requests
 # --- FUNZIONE NOTIFICA ---
 def invia_notifica(messaggio):
     # Incolla qui il NUOVO token che ti ha dato BotFather
-    nuovo_token = "8612614571:AAH9ZYWxr1m-N5RbeCQhQX24rxvDo4f6wHI" 
+    nuovo_token = "8612614571:AAEHubSj6UIjDVuQxkxjhP5lxZBpf7-3Szc" 
     mio_chat_id = "600355763"
     
     url = f"https://api.telegram.org/bot{nuovo_token}/sendMessage"
