@@ -52,3 +52,10 @@ def invia_notifica(messaggio):
 if st.button("Richiedi Disponibilità"):
     invia_notifica(f"Nuova richiesta da Essence! Orario: {ora}")
     st.success("Richiesta inviata!")
+
+if st.button("TEST NOTIFICA"):
+    risposta = requests.post(
+        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
+        data={"chat_id": CHAT_ID, "text": "Test di connessione riuscito!"}
+    )
+    st.write(risposta.json()) # Questo ti dirà l'errore esatto se fallisce
