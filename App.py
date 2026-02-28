@@ -39,33 +39,28 @@ if prompt := st.chat_input("Scrivi qualcosa..."):
 # Pulsante per resettare la conversazione (Privacy)
 if st.button("Cancella Cronologia Chat", type="secondary"):
     st.session_state.messages = []
-
 import requests
 
-# --- FUNZIONE NOTIFICA ---
-def invia_notifica(messaggio):
-    # INCOLLA QUI IL NUOVO TOKEN PRESO DA BOTFATHER
-    token_sicuro = "8612614571:AAEHubSj6UIjDVuQxkxjhP5lxZBpf7-3Szc" 
-    chat_id_mio = "600355763"
+# Funzione per inviare la notifica
+def invia_notifica(testo):
+    # INCOLLA QUI IL NUOVO TOKEN
+    token_nuovo = "https://core.telegram.org/bots/inline"
+    mio_id = "600355763"
     
-    url = f"https://api.telegram.org/bot{token_sicuro}/sendMessage"
-    payload = {
-        "chat_id": chat_id_mio,
-        "text": messaggio,
-        "parse_mode": "HTML"
-    }
+    url = f"https://api.telegram.org/bot{token_nuovo}/sendMessage"
+    payload = {"chat_id": mio_id, "text": testo}
     
     try:
         requests.post(url, data=payload)
     except Exception as e:
-        st.error(f"Errore tecnico: {e}")
+        st.error(f"Errore: {e}")
 
-# --- BOTTONI NELL'APP ---
+# Pulsante per i clienti
 if st.button("Richiedi Disponibilità"):
-    invia_notifica("🔔 <b>Nuova richiesta!</b>\nQualcuno vuole la tua compagnia su Essence.")
-    st.success("Richiesta inviata correttamente!")
+    invia_notifica("🔔 Qualcuno ha richiesto la tua compagnia su Essence!")
+    st.success("Richiesta inviata!")
 
+# Pulsante di TEST (Semplificato)
 if st.button("TEST NOTIFICA"):
-    # Usiamo la funzione sopra per essere sicuri che funzioni
-    invia_notifica("Test di connessione riuscito! ✨")
-    st.info("Controlla il tuo Telegram.")
+    invia_notifica("Test connessione riuscito! ✨")
+    st.info("Controlla Telegram.")
