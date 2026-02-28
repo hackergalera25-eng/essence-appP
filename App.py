@@ -39,4 +39,15 @@ if prompt := st.chat_input("Scrivi qualcosa..."):
 # Pulsante per resettare la conversazione (Privacy)
 if st.button("Cancella Cronologia Chat", type="secondary"):
     st.session_state.messages = []
-    st.rerun()
+    import requests
+
+def invia_notifica(messaggio):
+    token = "8612614571:AAFFtoqMbU1KquWat6Mzh1lHXU-uUs31dxY"
+    chat_id = "600355763"
+    url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={messaggio}"
+    requests.get(url)
+
+# Nel punto in cui il cliente prenota o scrive:
+if st.button("Richiedi Disponibilità"):
+    invia_notifica(f"Nuova richiesta da Essence! Orario: {ora}")
+    st.success("Richiesta inviata!")
