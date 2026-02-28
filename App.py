@@ -42,27 +42,28 @@ if st.button("Cancella Cronologia Chat", type="secondary"):
 
 import requests
 
+# Funzione principale per le notifiche
 def invia_notifica(messaggio):
-    # Usa esattamente questi nomi
-    token = "8612614571:AAFFtoqMbU1KquWat6Mzh11HXU-uUs63er"
+    token = "8612614571:AAFFtoqMbU1KquWat6Mzh11HXU-uUs63er" # Assicurati che sia completo
     chat_id = "600355763"
-    
-    # Ho corretto l'URL aggiungendo 'sendMessage' e i parametri
-    url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={messaggio}"
-    
+    url = f"https://api.telegram.org/bot{token}/sendMessage"
+    payload = {"chat_id": chat_id, "text": messaggio}
     try:
-        requests.get(url)
-    except Exception as e:
-        st.error(f"Errore: {e}")
+        requests.post(url, data=payload)
+    except:
+        pass
 
-# --- Tasto per il TEST (Corretto) ---
+# Pulsante Richiedi Disponibilità
+if st.button("Richiedi Disponibilità"):
+    invia_notifica("🔔 Nuova richiesta da Essence!")
+    st.success("Richiesta inviata!")
+
+# Pulsante di TEST (Sistemato per eliminare il 401)
 if st.button("TEST NOTIFICA"):
-    # Qui usiamo i nomi minuscoli definiti sopra
-    token_test = "8612614571:AAFFtoqMbU1KquWat6Mzh11HXU-uUs63er"
-    chat_id_test = "600355763"
-    
+    t = "8612614571:AAFFtoqMbU1KquWat6Mzh11HXU-uUs63er"
+    c = "600355763"
     risposta = requests.post(
-        f"https://api.telegram.org/bot{token_test}/sendMessage",
-        data={"chat_id": chat_id_test, "text": "Test di connessione riuscito! ✨"}
+        f"https://api.telegram.org/bot{t}/sendMessage",
+        data={"chat_id": c, "text": "Test connessione riuscito! ✨"}
     )
     st.write(risposta.json())
