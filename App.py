@@ -39,7 +39,8 @@ if prompt := st.chat_input("Scrivi qualcosa..."):
 # Pulsante per resettare la conversazione (Privacy)
 if st.button("Cancella Cronologia Chat", type="secondary"):
     st.session_state.messages = []
-    import requests
+
+import requests
 
 def invia_notifica(messaggio):
     token = "8612614571:AAFFtoqMbU1KquWat6Mzh1lHXU-uUs31dxY"
