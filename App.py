@@ -44,27 +44,28 @@ import requests
 
 # --- FUNZIONE NOTIFICA ---
 def invia_notifica(messaggio):
-    # Incolla qui il NUOVO token che ti ha dato BotFather
-    nuovo_token = "8612614571:AAEHubSj6UIjDVuQxkxjhP5lxZBpf7-3Szc" 
-    mio_chat_id = "600355763"
+    # INCOLLA QUI IL NUOVO TOKEN PRESO DA BOTFATHER
+    token_sicuro = "8612614571:AAEHubSj6UIjDVuQxkxjhP5lxZBpf7-3Szc" 
+    chat_id_mio = "600355763"
     
-    url = f"https://api.telegram.org/bot{nuovo_token}/sendMessage"
+    url = f"https://api.telegram.org/bot{token_sicuro}/sendMessage"
     payload = {
-        "chat_id": mio_chat_id,
-        "text": messaggio
+        "chat_id": chat_id_mio,
+        "text": messaggio,
+        "parse_mode": "HTML"
     }
     
     try:
         requests.post(url, data=payload)
     except Exception as e:
-        st.error(f"Errore invio: {e}")
+        st.error(f"Errore tecnico: {e}")
 
-# --- AZIONI NELL'APP ---
+# --- BOTTONI NELL'APP ---
 if st.button("Richiedi Disponibilità"):
-    invia_notifica("🔔 Qualcuno ha richiesto la tua presenza su Essence!")
-    st.success("Richiesta inviata!")
+    invia_notifica("🔔 <b>Nuova richiesta!</b>\nQualcuno vuole la tua compagnia su Essence.")
+    st.success("Richiesta inviata correttamente!")
 
 if st.button("TEST NOTIFICA"):
-    # Usiamo la funzione definita sopra per il test
-    invia_notifica("Test connessione riuscito! ✨")
-    st.info("Controlla Telegram.")
+    # Usiamo la funzione sopra per essere sicuri che funzioni
+    invia_notifica("Test di connessione riuscito! ✨")
+    st.info("Controlla il tuo Telegram.")
