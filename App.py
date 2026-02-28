@@ -44,7 +44,7 @@ import requests
 
 # Funzione principale per le notifiche
 def invia_notifica(messaggio):
-    token = "8612614571:AAFFtoqMbU1KquWat6Mzh11HXU-uUs63er" # Assicurati che sia completo
+    token = "8612614571:AAERPLdbIA_JDgKzUcAUhmbHvdOzsro-ySk" # Assicurati che sia completo
     chat_id = "600355763"
     url = f"https://api.telegram.org/bot{token}/sendMessage"
     payload = {"chat_id": chat_id, "text": messaggio}
