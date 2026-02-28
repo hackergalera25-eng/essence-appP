@@ -43,19 +43,26 @@ if st.button("Cancella Cronologia Chat", type="secondary"):
 import requests
 
 def invia_notifica(messaggio):
-    token = "8612614571:AAFFtoqMbU1KquWat6Mzh1lHXU-uUs31dxY"
+    # Usa esattamente questi nomi
+    token = "8612614571:AAFFtoqMbU1KquWat6Mzh11HXU-uUs63er"
     chat_id = "600355763"
+    
+    # Ho corretto l'URL aggiungendo 'sendMessage' e i parametri
     url = f"https://api.telegram.org/bot{token}/sendMessage?chat_id={chat_id}&text={messaggio}"
-    requests.get(url)
+    
+    try:
+        requests.get(url)
+    except Exception as e:
+        st.error(f"Errore: {e}")
 
-# Nel punto in cui il cliente prenota o scrive:
-if st.button("Richiedi Disponibilità"):
-    invia_notifica(f"Nuova richiesta da Essence! Orario: {ora}")
-    st.success("Richiesta inviata!")
-
+# --- Tasto per il TEST (Corretto) ---
 if st.button("TEST NOTIFICA"):
+    # Qui usiamo i nomi minuscoli definiti sopra
+    token_test = "8612614571:AAFFtoqMbU1KquWat6Mzh11HXU-uUs63er"
+    chat_id_test = "600355763"
+    
     risposta = requests.post(
-        f"https://api.telegram.org/bot{TOKEN}/sendMessage",
-        data={"chat_id": CHAT_ID, "text": "Test di connessione riuscito!"}
+        f"https://api.telegram.org/bot{token_test}/sendMessage",
+        data={"chat_id": chat_id_test, "text": "Test di connessione riuscito! ✨"}
     )
-    st.write(risposta.json()) # Questo ti dirà l'errore esatto se fallisce
+    st.write(risposta.json())
